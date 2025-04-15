@@ -52,6 +52,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }: { message: Respons
             <Image  
               key={index}
               src={part.image_url.url}
+              width={200}
+              height={200}
               alt="Image content"
               className="message-image"
             />
