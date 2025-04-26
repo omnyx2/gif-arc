@@ -15,7 +15,7 @@ interface ImagePart {
   image_url: SubIMagePart;
 }
 
-export type MessageContent = string | (TextPart | ImagePart)[];
+export type MessageContent = string | (TextPart | ImagePart)[] | null | undefined;
 
 export interface ResponseMessage {
   role: string;

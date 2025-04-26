@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import ChatMessage from './ChatMessage';
+import ShowGifComponent from './ShowGifComponent';
 
 interface Message {
   role: string;
@@ -19,6 +20,10 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="chat-room">
+      
+      {messages.length === 0 && <p>Loading...</p>}
+      {messages.length > 0 && <p>Loaded {messages.length} messages</p>}
+      { <ShowGifComponent inputString={messages[messages.length]?.content} /> }
       { messages.map((message, index) => {
     
           return (

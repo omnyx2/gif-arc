@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import ShowGifComponent from '../components/ShowGifComponent';
 
 interface RecordItem {
   filename: string;
@@ -23,7 +24,7 @@ export default function RecordListPage() {
           <li key={record.uuid} style={{ marginBottom: '16px', borderBottom: '1px solid #ddd', paddingBottom: '12px' }}>
             <Link href={`/record/${record.filename}`}  style={{ textDecoration: 'none', color: 'inherit' }}>
                 <h2 style={{fontSize: 20, fontWeight: 600}}>{record.uuid}</h2>
-                <p style={{fontSize: 16, fontWeight: 400, fontFamily:'sans-serif'}}>{record.description}</p>
+                <ShowGifComponent inputString={record.description} />
                 <small>{record.created}</small>
               </Link>
           </li>

@@ -2,28 +2,53 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import path from 'path';
 import fs from 'fs';
+import React from 'react';
 
 interface RecordListProps {
-  // 여기서는 fileList.json이 단순한 문자열 배열이라고 가정합니다.
-  // 만약 객체 배열이라면 아래와 같이 수정하세요.
-  // files: { filename: string; uuid: string; created: string; description: string }[];
   files: string[];
 }
 
+const Sidebar: React.FC = () => {
+  return (
+    <nav className="w-64 bg-gray-100 p-4">
+      <h2 className="text-xl font-bold mb-4">Navigation</h2>
+      <ul className="space-y-2">
+        <li>
+          <Link href="/">
+            <a className="text-blue-500 hover:underline">Home</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/records">
+            <a className="text-blue-500 hover:underline">Records</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/about">
+            <a className="text-blue-500 hover:underline">About</a>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
 const RecordList: React.FC<RecordListProps> = ({ files }) => {
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">데이터 리스트</h1>
-      <ul className="space-y-2">
-        {files.map((file) => (
-          <li key={file}>
-            <Link href={`/record/${file}`}>
-              {/* Next.js 13 app 디렉토리에서는 <Link>의 자식으로 <a> 태그 대신 바로 사용하세요 */}
-              <a className="text-blue-500 hover:underline">{file}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 p-4">
+        <h1 className="text-2xl font-bold mb-4">데이터 리스트</h1>
+        <ul className="space-y-2">
+          {files.map((file) => (
+            <li key={file}>
+              <Link href={`/record/${file}`}>
+                <a className="text-blue-500 hover:underline">{file}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
