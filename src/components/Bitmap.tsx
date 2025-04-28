@@ -8,7 +8,6 @@ const getColor = (value: number ): string => {
   const colors = cmap
   return colors[value % colors.length]; // 값에 따라 색상 선택
 };
-
 export type Bitmap =  number[][];
 
 type BitmapRendererProps = {
@@ -25,7 +24,8 @@ export const BitmapRenderer: React.FC<BitmapRendererProps> = ({ data, cellsize }
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${data.length}, ${CELL_SIZE}px)`,
+        gridTemplateColumns: `repeat(${data[0].length}, ${CELL_SIZE}px)`, // 열 수에 따라 그리드 설정
+        gridTemplateRows: `repeat(${data.length}, ${CELL_SIZE}px)`, // 행 수에 따라 그리드 설정
         gap: '1px', // 셀 간격
       }}
     >
